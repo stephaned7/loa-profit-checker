@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/loa-profit-checker/static/css/main.f855e6bc.css",
-    "main.js": "/loa-profit-checker/static/js/main.cfe2c422.js",
+    "main.js": "/loa-profit-checker/static/js/main.2d6ea910.js",
     "static/js/453.d1f5038b.chunk.js": "/loa-profit-checker/static/js/453.d1f5038b.chunk.js",
     "index.html": "/loa-profit-checker/index.html",
     "main.f855e6bc.css.map": "/loa-profit-checker/static/css/main.f855e6bc.css.map",
-    "main.cfe2c422.js.map": "/loa-profit-checker/static/js/main.cfe2c422.js.map",
+    "main.2d6ea910.js.map": "/loa-profit-checker/static/js/main.2d6ea910.js.map",
     "453.d1f5038b.chunk.js.map": "/loa-profit-checker/static/js/453.d1f5038b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.cfe2c422.js"
+    "static/js/main.2d6ea910.js"
   ]
 }
