@@ -1,38 +1,200 @@
-.App {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove arrows for number inputs in Chrome, Edge, and Safari */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Remove arrows for number inputs in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body{
+  font-family: sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Recipes page */
+
+.recipes-page .title{
+  text-align: center;
+}
+
+.recipes-page h1{
+  margin-bottom: 15px;
+}
+
+.recipes-page .heading{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.recipes button{
+  padding: 10px;
+  font-weight: bold;
+  color: black;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .5s all ease;
+}
+
+.recipes button:hover{
+  background-color: #0d6efd;
+  border: none;
   color: white;
+  border: 2px solid white;
 }
 
-.App-link {
-  color: #61dafb;
+.recipes-page .cost-reduction-title{
+  margin-top: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.recipes-page .reductions .heading{
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.recipes-page .recipe-header{
+  margin-top: 20px;
+  text-align: center;
+}
+
+.recipes-page .recipes{
+  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+
+.recipes-page .recipes .inputs-group {
+  padding: 10px;
+}
+
+.recipes-page input{
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  margin-top: 5px;
+  width: 150px;
+}
+
+.recipes-page .recipes .inputs-group .heading .categ-name {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.recipes-page .recipes ul li{
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.recipes-page .item-price-input{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Best crafts page */
+
+.best-crafts-page .title{
+  text-align: center;
+}
+
+.best-crafts-page input{
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  margin-top: 5px;
+  width: 150px;
+}
+
+.best-crafts-page .heading{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.best-crafts-page .reductions{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.best-crafts-page h1{
+  margin-bottom: 15px;
+}
+
+.best-crafts-page h3{
+  margin-top: 20px;
+}
+
+.best-crafts-page .title-heading{
+  margin-top: 20px;
+  text-align: center;
+}
+
+.best-crafts-page .materials-container{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.best-crafts-page .materials-container .material-name{
+  margin-top: 15px;
+}
+
+
+.best-crafts-page .materials-container .input-group{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.best-crafts-page .item-prices-title{
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.best-crafts-page .item-prices{
+  display: flex;
+  justify-content: center;
+}
+
+.best-crafts-page .item-prices .input-group{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.best-crafts-page .best-crafts-title{
+  margin-bottom: 15px;
+}
+
+.best-crafts-page .result-recipe{
+  margin-bottom: 15px;
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import materials from "../materials.js";
 import { recipes } from "../recipes.js";
+import { Link } from "react-router-dom";
 import categories from "../categories.js";
 import craftedItems from "../crafts.js";
 import { getCraftingCost, getSellingPrice } from "../methodStore.js";
@@ -16,6 +17,16 @@ const BestCrafts = () => {
     }));
   };
 
+  const groupedMaterials = materials.reduce((acc, material) => {
+    const lifeskill = material.lifeskillType?.name;
+
+    if (!acc[lifeskill]) {
+      acc[lifeskill] = [];
+    }
+    acc[lifeskill].push(material);
+    return acc;
+  }, {});
+
 const calculateProfits = () => {
   return recipes
     .map((recipe) => {
@@ -24,7 +35,7 @@ const calculateProfits = () => {
       );
 
       if (!hasAllPrices) {
-        return null; // Exclude recipes with missing material prices
+        return null;
       }
 
       const craftingCost = getCraftingCost(recipe, prices);
@@ -33,62 +44,79 @@ const calculateProfits = () => {
 
       return {
         ...recipe,
-        profit, // Always return the recipe object with the profit value
+        profit,
       };
     })
-    .filter((recipe) => recipe !== null); // Remove null values
+    .filter((recipe) => recipe !== null);
 };
 
 const sortedRecipes = calculateProfits().sort((a, b) => b.profit - a.profit);
 
   return (
-    <div className="App">
-      <h1>Best Crafts</h1>
+    <div className="App best-crafts-page">
+      <div className="heading">
+        <h1>Best Crafts</h1>
+        <Link to="/">Recipes</Link>
 
-      <a href="/">Recipes</a>
-
-      <label>Cost reduction %</label>
+        <h3 className="title">Cost reduction %</h3>
+      </div>
 
       {categories.map((category) => (
-        <div key={category.id}>
-          <h2>{category.name}</h2>
-          <input
-            type="number"
-            id={category.id}
-            onChange={(e) => handlePriceChange(category.id, e.target.value)}
-          ></input>
+        <div key={category.id} className="reductions">
+          <h2 className="title">{category.name}</h2>
+          <div className="input-group">
+            <input
+              type="number"
+              id={category.id}
+              onChange={(e) => handlePriceChange(category.id, e.target.value)}
+            ></input>
+          </div>
         </div>
       ))}
 
-      <h2>Materials</h2>
-      {materials.map((material) => (
-        <div key={material.id}>
-          <label>{material.name}</label>
-          <input
-            type="number"
-            id={material.id}
-            onChange={(e) => handlePriceChange(material.id, e.target.value)}
-          ></input>
-        </div>
-      ))}
+      <h2 className="title-heading">Materials</h2>
+      <div className="materials-container">
+        {Object.entries(groupedMaterials).map(([lifeskill, materials]) => (
+          <div key={lifeskill}>
+            <h3 className="title">{lifeskill}</h3>
 
-      <h2>Items prices</h2>
+            {materials.map((material) => (
+              <div key={material.id}>
+                <div className="input-group">
+                  <label className="material-name">{material.name}</label>
+                  <input
+                    type="number"
+                    id={material.id}
+                    onChange={(e) =>
+                      handlePriceChange(material.id, e.target.value)
+                    }
+                  ></input>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      <h2 className="title item-prices-title">Items prices</h2>
       {craftedItems.map((item) => (
-        <div key={item.id}>
-          <label>{item.name}</label> {/* Ensure item.name is accessed */}
-          <input
-            type="number"
-            id={item.id}
-            onChange={(e) => handlePriceChange(item.id, e.target.value)}
-          ></input>
+        <div key={item.id} className="item-prices">
+          <div className="input-group">
+            <label>{item.name}</label>
+            <input
+              type="number"
+              id={item.id}
+              onChange={(e) => handlePriceChange(item.id, e.target.value)}
+            ></input>
+          </div>
         </div>
       ))}
 
-      <h2>Most profitable crafts</h2>
+      <h2 className="title best-crafts-title">Most profitable crafts</h2>
       {sortedRecipes.map((recipe) => (
-        <div key={recipe.id}>
-          <h3>{recipe.name}</h3>
-          <p>
+        <div key={recipe.id} className="best-crafts-results">
+          <h3 className="title">{recipe.name}</h3>
+          <p className="title result-recipe">
             {recipe.profit < 0
               ? `${Math.abs(recipe.profit)} gold loss per bundle`
               : recipe.profit === 0

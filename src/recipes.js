@@ -102,6 +102,20 @@ const recipes = [
       itemCrafted: findItemByName("Abidos fusion material"),
       quantityCrafted: 10,
     },
+
+    {
+      id: 7,
+      name: "Prime oreha fusion material x15 (Fishing)",
+      recipe: [
+        {material: findMaterialByName("Fish"), quantity: 128 },
+        {material: findMaterialByName("Redflesh Fish"), quantity: 64 },
+        {material: findMaterialByName("Oreha Solar Carp"), quantity: 16 }
+      ],
+      category: findCategoryByName("Special"),
+      craftingCost: 300,
+      itemCrafted: findItemByName("Prime oreha fusion material"),
+      quantityCrafted: 15,
+    },
 ];
 
 export { recipes, findRecipeByName };
