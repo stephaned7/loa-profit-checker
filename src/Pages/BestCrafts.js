@@ -27,30 +27,31 @@ const BestCrafts = () => {
     return acc;
   }, {});
 
-const calculateProfits = () => {
-  return recipes
-    .map((recipe) => {
-      const hasAllPrices = recipe.recipe.every(
-        (item) => prices[item.material.id] !== undefined && prices[item.material.id] > 0
-      );
+  const calculateProfits = () => {
+    return recipes
+      .map((recipe) => {
+        const hasAllPrices = recipe.recipe.every(
+          (item) => prices[item.material.id] !== undefined
+        );
 
-      if (!hasAllPrices) {
-        return null;
-      }
+        if (!hasAllPrices) {
+          return null;
+        }
 
-      const craftingCost = getCraftingCost(recipe, prices);
-      const sellingPrice = getSellingPrice(recipe, prices);
-      const profit = sellingPrice - craftingCost;
+        const craftingCost = getCraftingCost(recipe, prices);
+        const sellingPrice = getSellingPrice(recipe, prices);
+        const netRevenue = Math.floor(sellingPrice * 0.95);
+        const finalProfit = netRevenue - craftingCost;
 
-      return {
-        ...recipe,
-        profit,
-      };
-    })
-    .filter((recipe) => recipe !== null);
-};
+        return {
+          ...recipe,
+          profit: finalProfit,
+        };
+      })
+      .filter((recipe) => recipe !== null);
+  };
 
-const sortedRecipes = calculateProfits().sort((a, b) => b.profit - a.profit);
+  const sortedRecipes = calculateProfits().sort((a, b) => b.profit - a.profit);
 
   return (
     <div className="App best-crafts-page">
@@ -120,8 +121,8 @@ const sortedRecipes = calculateProfits().sort((a, b) => b.profit - a.profit);
             {recipe.profit < 0
               ? `${Math.abs(recipe.profit)} gold loss per bundle`
               : recipe.profit === 0
-              ? "Break even"
-              : `${recipe.profit} gold profit per bundle`}
+                ? "Break even"
+                : `${recipe.profit} gold profit per bundle`}
           </p>
         </div>
       ))}

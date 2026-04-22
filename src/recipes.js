@@ -116,6 +116,20 @@ const recipes = [
       itemCrafted: findItemByName("Prime oreha fusion material"),
       quantityCrafted: 15,
     },
+
+      {
+    id: 8,
+    name: "Superior abidos fusion material x10 (Logging)",
+    recipe: [
+      { material: findMaterialByName("Timber"), quantity: 112 },
+      { material: findMaterialByName("Tender Timber"), quantity: 59 },
+      { material: findMaterialByName("Abidos Timber"), quantity: 43 },
+    ],
+    category: findCategoryByName("Special"),
+    craftingCost: 520,
+    itemCrafted: findItemByName("Superior abidos fusion material"),
+    quantityCrafted: 10,
+  },
 ];
 
 export { recipes, findRecipeByName };

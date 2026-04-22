@@ -7,6 +7,11 @@ let craftedItems = [
     {
         id: "primeOrehaFusion",
         name: "Prime oreha fusion material",
+    },
+
+    {
+        id: "superiorAbidosFusionMaterial",
+        name: "Superior abidos fusion material",
     }
 ];
 

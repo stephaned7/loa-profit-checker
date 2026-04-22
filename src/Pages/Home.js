@@ -40,15 +40,13 @@ const Home = () => {
   const checkProfit = (recipe) => {
     const sellingPrice = getSellingPrice(recipe);
     const craftingCost = getCraftingCost(recipe);
+    const netRevenue = Math.floor(sellingPrice * 0.95);
+    const profit = netRevenue - craftingCost;
 
-    console.log("Selling Price:", sellingPrice);
-    console.log("Crafting Cost:", craftingCost);
-    console.log("Profit:", sellingPrice - craftingCost);
-
-    if (sellingPrice > craftingCost) {
-      return `${sellingPrice - craftingCost} gold profit per bundle`;
-    } else if (sellingPrice < craftingCost) {
-      return `${craftingCost - sellingPrice} gold loss per bundle`;
+    if (profit > 0) {
+      return `${profit} gold profit per bundle`;
+    } else if (profit < 0) {
+      return `${Math.abs(profit)} gold loss per bundle`;
     } else {
       return "No profit, no loss";
     }
